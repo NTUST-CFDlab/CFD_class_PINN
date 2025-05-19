@@ -16,15 +16,15 @@ import tensorflow as tf
 # Parameters
 Main_File    = "BFS16.txt"
 Noisy_File   = "BFS16_N03.txt"
-PINN_File    = "XXX.keras"		# You need to change this
+PINN_File    = "Backup-iter-5000.keras"		# You need to change this
 NN_Layers    = 3			# You need to change this
-NN_Neurons   = 16			# You need to change this
+NN_Neurons   = 32			# You need to change this
 Focus_Domain = [[3., 12.], [0., 2.]]
 
 
 # NN Structure
 class PINN_NeuralNet(tf.keras.Model):
-    def __init__(self, All_Neurons = [64, 64, 64, 64],
+    def __init__(self, All_Neurons = [NN_Neurons for i in range(NN_Layers)],
                  activation='tanh',
                  kernel_initializer='glorot_normal',
                  **kwargs):
@@ -55,10 +55,9 @@ class PINN_NeuralNet(tf.keras.Model):
 
 
 # Read Data
-All_Layes   = [NN_Neurons for i in range(NN_Layers)]
 Main_Data   = np.loadtxt(Main_File , unpack = True, usecols = (0,1,2,3,4))
 Noise_Data  = np.loadtxt(Noisy_File, unpack = True, usecols = (0,1,2,3,4))
-PINN_Model  = tf.keras.models.load_model(PINN_File, custom_obejcts={'PINN_NeuralNet': PINN_NeuralNet(All_Layes)})
+PINN_Model  = tf.keras.models.load_model(PINN_File, custom_objects={'PINN_NeuralNet': PINN_NeuralNet})
 
 def Extract_Main_Vals(Main_Data, Focus_Domain):
     F1_Coor, F1_Data, _ = Ex_Points_Box_MD(Main_Data[0:2], Main_Data[2:], Focus_Domain, "Include")
