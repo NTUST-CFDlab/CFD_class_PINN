@@ -58,8 +58,8 @@ Q:	How to plot the vector?
 
 A:	(I tried to explain it as clear as possible, so its a bit long)
 
-	1. Go to the "Compare" folder and open "Compare_Vector.py"
-	2. You only need to change 'PINN_File = "XXX.keras"'
+	1. Go to the "Compare" folder and open "Compare_Vector_V2.py"
+	2. You need to change 'PINN_File = "XXX.keras"' and the network size (based on your trained network)
 	3. You need to set this with the network you already trained 
 	   (the file containing the weight and bias of the network)
 	4. This file is located in the "NN" folder, if you already trained the network.
@@ -80,7 +80,7 @@ A:	(I tried to explain it as clear as possible, so its a bit long)
 		!python3 Compare_Vector.py	(Collab)
 
 ---
-Q:	There are issues on running the "Compare_Vector.py"
+Q:	There are issues on running the "Compare_Vector_V2.py"
 
 A:	You need everything in the "Compare" folder. (The .txt files and the Lib_Compare_Vector.py)
 	All of these files must be in the same folder.
