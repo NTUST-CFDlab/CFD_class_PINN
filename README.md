@@ -4,41 +4,44 @@ This is a PINN code to demonstrate PINN capabilities. There are 3 cases provided
  
 
 
-# FAQ
-
-#########################
-1. Burgers
-#########################
+# FAQ - BURGERS
+   
 Q:	How can I extract the data so I can compare it to CFD?
-A:	Short answer:	No need, as long it roughly looks the same 
-			(the trends and values), then it is okay.
-			
-	Technical answer:
-	- You need to pass on the coordinates of the final time at the network.
-	- This may require its own code to make the process easy.
+
+A:	Short answer:	No need, as long it roughly looks the same (the trends and values), then it is okay.
+
+A:	Technical answer: 
+        You need to pass on the coordinates of the final time at the network. 
+	This may require its own code to make the process easy.
 	
-	
+
+--- 
 Q:	How large should I set my network?
+
 A:	Up to you, in general, larger network is more powerful but harder to train.
 	Smaller network is easier and faster to train, but may have limited capabilities.
-	*Just for a reference, a deep neural network typically has 3 layers.
-
 	
+ *Just for a reference, a deep neural network typically has 3 layers.
+
+
+--- 	
 Q:	How many points should I use?
-A:	- Boundary points is usually not that significant (just dont make it extremely low)
-	- Collocation points are like mesh, so more is better, but longer to simulate.
-	* For me, I prefer to have my cases (any case) to have around 10k-20k points.
+
+A:	Boundary points is usually not that significant (just dont make it extremely low).
+	Collocation points are like mesh, so more is better, but longer to simulate.
+ 
+*For me, I prefer to have my cases (any case) to have around 10k-20k points.
 	  This way, it is not to heavy and can still be quite accurate.
 
-
+--- 	
 Q:	Should I change the weight?
+
 A:	Not recommended unless you know what you are expecting.
 
 
-#########################
-2. Denoise:
-#########################
+# FAQ - Denoise
 Q:	The default code give me loss = nan (not a number)
+
 A:	Maybe you change something to make it physically doesnt make sense, or
 	some part of the network doesnt make sense.
 	
@@ -50,8 +53,9 @@ A:	Maybe you change something to make it physically doesnt make sense, or
 	(Line 58) Scr_LF[0] = ["B" , -1., [], []]	(Weight cannot be negative)
 	(Line 62) NR_B_List = [-1, 0, 1]		(Beta values cannot be negative)
 	
-	
+---
 Q:	How to plot the vector?
+
 A:	(I tried to explain it as clear as possible, so its a bit long)
 
 	1. Go to the "Compare" folder and open "Compare_Vector.py"
@@ -75,21 +79,34 @@ A:	(I tried to explain it as clear as possible, so its a bit long)
 		!python Compare_Vector.py	(Collab)
 		!python3 Compare_Vector.py	(Collab)
 
-
+---
 Q:	There are issues on running the "Compare_Vector.py"
+
 A:	You need everything in the "Compare" folder. (The .txt files and the Lib_Compare_Vector.py)
 	All of these files must be in the same folder.
 	If your .keras file is in a different folder then you might want to set it as:
 		PINN_File = "YOURFOLDERNAME/Backup-iter-10000.keras"
 		
-		
+---		
 Q:	What is the ideal value of beta?
-A:	That depends on the quality of the data.
-	*The example picture use beta = 3.0
-	
 
+A:	That depends on the quality of the data.
+
+*The example picture use beta = 3.0
+	
+---
 Q:	The loss curve doesnt make sense
+
 A:	Maybe you set beta too low or too high
 
 
-*Will be updated if there is more questions
+# FAQ - Error Estimation
+
+Q:	The loss curve doesnt make sense
+
+A:	Maybe you set beta too low or too high. Also, that is not the data loss, but the modified data loss. You need to convert it manually if you want to get the pure data loss.
+
+
+
+---
+*Will be updated if there are more questions
