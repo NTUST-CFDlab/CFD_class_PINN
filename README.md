@@ -106,6 +106,28 @@ Q:	The loss curve doesnt make sense
 
 A:	Maybe you set beta too low or too high. Also, that is not the data loss, but the modified data loss. You need to convert it manually if you want to get the pure data loss.
 
+---
+Q:	How to process the loss?
+
+A:	Use the "Convert_Loss.py" (its in the "Analysis_Codes" Folder) to convert the "Beta_Loss.txt" file. This would convert the loss into an L2 form.
+
+A:	Use the "Analyze_Loss.py" (its in the "Analysis_Codes" Folder) to do the extrapolation and get the minimum and maximum estimate.
+	
+
+---
+Q:	Can we use any extrapolation method?
+
+A:	Not recommended. If you just use any random extrapolation method you will end up with an estimate of the error, without knowing how good or bad the estimate is. The extrapolation method that we recommend estimates the upper bound, so we can have a confidence interval regarding the estimation. 
+
+
+---
+Q:	How to know if any loss in invalid?
+
+A:	There are no definitive rule just yet. However here are things to consider
+
+	1. If you set the beta value to close (not so different) from one value to another, the PINN could conduct only 1 iteration at that beta value, which is invalid.
+ 	2. If your DataM loss is way lower than the GE loss (my rule of thumb is about 20x), or you can see that it is quite fluctuating, then its invalid
+  	3. If your beta is small and it creates almost no change to the data loss (the data loss (LD), not the modified data loss (LM or DataM)), then you can ignore it.
 
 
 ---
